@@ -280,12 +280,15 @@ def decorate_HTTP_verb_method(method):
         logger.debug(pre_message)
         response = method(self, REST_uri, **kwargs)
         post_message =\
-            "RESPONSE::STATUS: %s Content-Type: %s Content-Encoding:"\
-            " %s\nText: %r" % (response.status_code,
+            "Nanda RESPONSE::STATUS: %s Content-Type: %s Content-Encoding:"\
+            " %s Nanda Text: %r" % (response.status_code,
                                response.headers.get('Content-Type', None),
                                response.headers.get('Content-Encoding', None),
                                response.text)
         logger.debug(post_message)
+        post_message_custom = \
+            "Nanda Text: %r" % (response.text)
+        logger.debug(post_message_custom)
         if response.status_code not in range(200, 207):
             error_message = '%s Unexpected Error: %s for uri: %s\nText: %r' %\
                             (response.status_code,
